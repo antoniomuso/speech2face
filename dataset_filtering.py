@@ -1,5 +1,5 @@
 from glob import glob
-from os.path import join
+from os.path import join, exists, basename
 from os import makedirs, listdir
 from shutil import copy
 from random import shuffle
@@ -15,14 +15,16 @@ def filter_wav_dataset(wav_path, output_path, n_wav_actor=10):
         wavs = glob(actor_path + '/**/*.wav', recursive=True)
 
         actor_out_path = join(output_path, actor)
-        makedirs(actor_out_path)
-
+        if not exists(actor_out_path):
+            makedirs(actor_out_path)
+        shuffle(wavs)
         count = 0
-        for wav in shuffle(wavs):
-            copy(wav, actor_out_path)
+        for wav in wavs:
             count += 1
             if count > n_wav_actor: 
                 break
+            copy(wav, join ( actor_out_path ,basename(actor_out_path) + '_' + str(count) + '.wav'))
+            
         
 
 
