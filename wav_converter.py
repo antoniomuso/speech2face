@@ -54,7 +54,7 @@ def convert_files(main_dir, out_dir):
     #np.save
 
 if __name__ == '__main__':
-    md = ''
-    od = ''
+    md = '/home/kron/shared/Desktop/Uni-Informatica/Magistrale/Deep Learning/Project/wav_filtered_20_per_actor'
+    od = '/home/kron/shared/Desktop/Uni-Informatica/Magistrale/Deep Learning/Project/wav_filtered_20_per_actor_np'
 
     convert_files(md, od)
