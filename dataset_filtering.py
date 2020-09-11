@@ -3,14 +3,17 @@ from os.path import join, exists, basename
 from os import makedirs, listdir
 from shutil import copy
 from random import shuffle
-
+from tqdm import tqdm
 import argparse
 
 
 
 def filter_wav_dataset(wav_path, output_path, n_wav_actor=10):
+    print("Starting, wav path:", wav_path, "; out path:", output_path, "; wavs per actor:", n_wav_actor)
+    actors = listdir(main_dir)
+    for i in tqdm(range(len(actors))):
+        actor = actors[i]
 
-    for actor in listdir(wav_path):
         actor_path = join(wav_path, actor)
         wavs = glob(actor_path + '/**/*.wav', recursive=True)
 
